@@ -1,0 +1,13 @@
+
+#left_side>p>a>img {
+    width: 20px;
+}
+#left_side {
+    flex: 1;
+    font-size: 22px;
+    border-right: 1px solid rgb(134, 134, 134);
+}
+#left_side>p>a {
+    color: black;
+    text-decoration: none;
+}

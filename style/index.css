@@ -1,0 +1,106 @@
+.container {
+    display: flex;
+}
+#search_results {
+    display: grid;
+    grid-gap: 20px;
+    width: 86%;
+    margin-left: 1%;
+    margin-top: 1%;
+    grid-template-columns: repeat(4,1fr);
+}
+.main_div {
+    margin-bottom: 2%;
+}
+.img_div{
+    width: 100%;
+    margin-bottom: 0%;
+}
+.img_div>img{
+    width: inherit;
+    height: 100%;
+}
+.title_div>p {
+    margin-top: 0%;
+    margin-bottom: 0%;
+}
+.title_div {
+    display: flex;
+}
+.title_div>img {
+    width: 20%;
+    height: 40px;
+    border-radius: 50%;
+}
+.pro_name {
+    font-size: 15px;
+}
+.title_div>p {
+    width: 78%;
+    height: 38px;
+    margin-left: 3%;
+    margin-right: 1%;
+    font-size: 16px;
+    overflow: hidden;
+}
+.channelname>p {
+    margin-top: 0.8%;
+    margin-left: 23%;
+    margin-bottom: 0.6%;
+}
+/* fianl search here */
+.main_div_search {
+    display: flex;
+    height: 210px;
+    width: 100%;
+    margin-bottom: 2%;
+}
+.img_div_search {
+    width: 30%;
+    height: 100%;
+}
+.img_div_search>img {
+    width: 100%;
+    height: 100%;
+}
+.title_div_search {
+    width: 68%;
+}
+.main_title_line {
+    font-size: 25px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.title_div_search>p {
+    margin: 0%;
+    margin-left: 2%;
+}
+.view_p_search {
+    margin-bottom: 1%;
+}
+.name_icon_div {
+    display: flex;
+    height: 20%;
+    margin-left: 2%;
+    margin-top: 2%;
+}
+.icon_img_search {
+    width: 40px;
+    height: 40px;
+}
+.icon_img_search>img {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+}
+.channelname_search {
+    margin-top: 1%;
+    margin-left: 2%;
+    font-size: 19px;
+}
+.discription_search {
+    margin-top: 10px;
+    font-size: 17px;
+    height: 20px;
+    margin-left: 1%;
+    overflow: hidden;
+}

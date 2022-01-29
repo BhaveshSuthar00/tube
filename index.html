@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style/search_bar.css">
+    <link rel="stylesheet" href="./style/left_side.css">
+    <link rel="stylesheet" href="./style/index.css">
+</head>
+<body>
+    <div id="searchimport">
+    </div>
+    <div class="container">
+        <div id="left_side"></div>
+
+        <div id="search_results">
+            
+        </div>
+    </div>
+
+</body>
+</html>
+<script type="module">
+
+    import search_bar from "./components/search_bar.js";
+    let search_div = document.getElementById('searchimport');
+    search_div.innerHTML = search_bar()
+
+    import left_side from './components/left_side.js';
+    let container = document.getElementById('left_side');
+    container.innerHTML = left_side();
+
+
+    import { getPopular,getIcon,displayTable,displayTable2 } from "./scripts/popular.js";
+
+    let locationdd = document.getElementById('search_results');
+    let popularVideos = await getPopular();
+    popularVideos.forEach(({snippet,id}) =>{
+            async function data (){
+                try {
+                    let response_icon = await getIcon(snippet.channelId);
+                    let icon_url = (response_icon.items[0].snippet.thumbnails.default.url);
+                    let object = {
+                        icon : icon_url,
+                        snippet : snippet,
+                        id : id,
+                    }
+                    let displayDD = await displayTable(object,locationdd);
+                }
+                catch(error) {
+                    console.log('error in html',error)
+                }
+            }
+           data();
+    })
+    let id;
+    let search_input = document.getElementById('video_btn');
+    search_input.addEventListener('click',()=>{
+        searchVideo();
+    })
+let api_key = 'AIzaSyCDZcSZRlgejlYW5Pbgwdk2VWnuV4MItXs';
+
+    async function searchVideo() {
+        let video_query = document.getElementById('video_search').value;
+        
+        try {
+            let response = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&q=${video_query}&type=video&key=${api_key}&maxResults=25`)
+            let data = await response.json();
+            let videos = data.items;
+            displaySearch(videos);
+        }
+        
+        catch (error){
+            console.log(error);
+        }
+}
+
+function displaySearch(video){
+    video.forEach(({snippet,id})=>{
+        let lo = document.getElementById('search_results');
+        lo.innerHTML = null;
+        lo.style.display = 'block';
+
+        async function data2 (){
+                try {
+                    let response_icon = await getIcon(snippet.channelId);
+                    let icon_url = (response_icon.items[0].snippet.thumbnails.default.url);
+                    let object = {
+                        icon : icon_url,
+                        snippet : snippet,
+                        id : id,
+                    }
+                    let displayDD = await displayTable2(object,locationdd);
+                }
+                catch(error) {
+                    console.log('error in html',error)
+                }
+            }
+           data2();
+    })
+}
+</script>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style/search_bar.css">
+    <link rel="stylesheet" href="./style/display.css">
+</head>
+<body>
+    <div id="searchimport">
+    </div>
+    <div id="main">
+        <div id="video_details">
+            <div class="iframe_div"></div>
+
+            <p class="title_text"></p>
+
+            <div class="discrip">
+                <div class="data_div">
+                    <p></p>
+                    <p id="date_p"></p>
+                </div>
+
+                <div class="icon_div">
+                    <div>
+                        <div class="icon_img_div">
+                            <img src="https://www.pinclipart.com/picdir/big/541-5413896_youtube-like-button-transparent-clipart.png" alt="">
+                        </div>
+                        <div class="icon_text_div">
+                            <p>LIKE</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="icon_img_div">
+                            <img src="https://www.pngkit.com/png/detail/116-1166751_dislike-icon-png.png" alt="">
+                        </div>
+                        <div class="icon_text_div">
+                            <p>DISLIKE</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="icon_img_div">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRH9piq4AfsFEKUc7Dp1ejJpxiy4xUFJR7uGyfumivDCeIBi-e63lSIwGGvexkxRBU3Hvw&usqp=CAU" alt="">
+                        </div>
+                        <div class="icon_text_div">
+                            <p>SHARE</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="icon_img_div">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT66VUCgsCy8WAEHc-cefV7TX3jQxxWDOyXKA&usqp=CAU" alt="">
+                        </div>
+                        <div class="icon_text_div">
+                            <p>SAVE</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="icon_img5_div">
+                            <img src="https://friconix.com/png/fi-ctluxx-exclamation-mark-rounded.png" alt="">
+                        </div>
+                        <div class="icon_text_div">
+                            <p>DESCRIPTION</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="icon_img6_div">
+                            <img src="https://voltamagazine.files.wordpress.com/2018/02/2000px-simple_icon_ellipsis-svg.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="recommendation">
+            
+
+            
+        </div>
+    </div>
+</body>
+</html>
+<script type="module">
+
+    import search_bar from "./components/search_bar.js";
+    let search_div = document.getElementById('searchimport');
+    search_div.innerHTML = search_bar();
+
+    import {recommended_video,recom} from './scripts/recommended.js';
+
+
+import { getPopular,getIcon,displayTable,displayTable2 } from "./scripts/popular.js";
+    
+    var {id,snippet,icon} = JSON.parse(localStorage.getItem('video_onclick'));
+
+
+    let v = snippet.publishedAt;
+    let today = new Date(v)
+    let dd = (today.toLocaleString('en-US', {
+    day: 'numeric', // numeric, 2-digit
+    year: 'numeric', // numeric, 2-digit
+    month: 'short', // numeric, 2-digit, long, short, narrow
+}));
+    let displaydivfor = document.querySelector('.iframe_div');
+    let iframe = document.createElement('iframe');
+            iframe.src = `https://www.youtube.com/embed/${id}`;
+            iframe.width="100%"
+            iframe.height="100%"
+            iframe.setAttribute('allowfullscreen',true)
+        displaydivfor.append(iframe);
+    
+    let name_text = document.querySelector('.title_text');
+    name_text.textContent = snippet.title;
+
+    let date_p = document.getElementById('date_p');
+    date_p.textContent = dd;
+
+    let recommendation = document.getElementById('recommendation');
+    async function datashow(){
+        try {
+            let response = await recommended_video(id);
+            recommendIcon(response);
+        }
+        catch(error) {
+            console.log('error in recomend html',error);
+        }
+    }
+    datashow()
+
+
+    function recommendIcon(video){
+        // recommendation.innerHTML = null;
+    video.forEach(({snippet,id:{videoId}})=>{
+        
+        async function recommendGetIcon (){
+                try {
+                    let response_icon = await getIcon(snippet.channelId);
+                    let icon_url = (response_icon.items[0].snippet.thumbnails.default.url);
+                    let object = {
+                        icon : icon_url,
+                        snippet : snippet,
+                        id : videoId,
+                    }
+                    let displayDD = await displayTable3(object,recommendation);
+                }
+                catch(error) {
+                    console.log('error in html',error)
+                }
+        }
+            recommendGetIcon();
+    })
+}
+
+
+
+
+
+// search result area
+
+let search_input = document.getElementById('video_btn');
+search_input.addEventListener('click',()=>{
+    let video_query = document.getElementById('video_search').value;
+    // searchVideo(video_query);
+    display_search(video_query)
+})
+
+import {searchVideo_dd,displayTable3} from "./scripts/search.js";
+
+let api_key = 'AIzaSyCDZcSZRlgejlYW5Pbgwdk2VWnuV4MItXs';
+    async function display_search(search_text) {
+        
+        try {
+            let response = await searchVideo_dd(search_text);
+            // console.log(response)
+            displaySearch_see(response.items);
+        }
+        
+        catch (error){
+            console.log(error);
+        }
+}
+
+
+function displaySearch_see(video){
+        recommendation.innerHTML = null;
+    video.forEach(({snippet,id:{videoId}})=>{
+
+        async function data2 (){
+                try {
+                    let response_icon = await getIcon(snippet.channelId);
+                    let icon_url = (response_icon.items[0].snippet.thumbnails.default.url);
+                    let object = {
+                        icon : icon_url,
+                        snippet : snippet,
+                        id : videoId,
+                    }
+                    let displayDD = await displayTable3(object,recommendation);
+                }
+                catch(error) {
+                    console.log('error in html',error)
+                }
+            }
+           data2();
+    })
+}
+
+var home_page = document.getElementById('youtubeicon')
+home_page.addEventListener('click',()=>{
+    window.location.href = 'index.html';
+})
+</script>
