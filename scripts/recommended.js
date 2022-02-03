@@ -1,5 +1,5 @@
 
-let api_key2 = 'AIzaSyCDZcSZRlgejlYW5Pbgwdk2VWnuV4MItXs';
+// let api_key2 = 'AIzaSyCDZcSZRlgejlYW5Pbgwdk2VWnuV4MItXs';
 // let api_key2 = "AIzaSyDLwh4lPFevGaj_v6n86SoHQIBM87PxJE4";
 
 async function recommended_video(videoId){

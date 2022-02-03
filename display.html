@@ -7,11 +7,44 @@
     <title>Document</title>
     <link rel="stylesheet" href="./style/search_bar.css">
     <link rel="stylesheet" href="./style/display.css">
+    <link rel="stylesheet" href="./style/left_side.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+    rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
+    <style>
+      .material-icons {
+          /* font-family: 'Material Icons'; */
+          font-family: "Material Icons";
+          font-weight: normal;
+          font-style: normal;
+          font-size: 24px; 
+          display: flex;
+          line-height: 1;
+          text-transform: none;
+          letter-spacing: normal;
+          word-wrap: normal;
+          white-space: nowrap;
+          direction: ltr;
+          -webkit-font-smoothing: antialiased;
+          text-rendering: optimizeLegibility;
+          -moz-osx-font-smoothing: grayscale;
+          font-feature-settings: 'liga';
+      }
+      
+      .material-icons {
+          height: fit-content;
+          width: fit-content;
+      }
+    </style>
 </head>
 <body>
     <div id="searchimport">
     </div>
     <div id="main">
+        <div id="left_side">
+
+        </div>
         <div id="video_details">
             <div class="iframe_div"></div>
 
@@ -89,6 +122,40 @@
     search_div.innerHTML = search_bar();
 
     import {recommended_video,recom} from './scripts/recommended.js';
+
+    import left_side from './components/left_side.js';
+    let container = document.getElementById('left_side');
+    container.innerHTML = left_side();
+    let a = 0;
+    let idd = document.getElementById('menuicon');
+    idd.addEventListener('click',()=>{
+
+       if(a%2==0){
+           container.innerHTML = null;
+        //    container.style.height = '0vh';
+           container.style.width = '0%';
+    // border-right: 1px solid rgb(134, 134, 134);
+    a++;
+}
+else {
+    container.style.width = '16%';
+    //    container.style.height = '100vh';
+    container.style.borderRight = "1px solid rgb(134, 134, 134)"
+           container.style.left = '0%'; 
+           container.innerHTML = left_side();
+            a++;
+        }
+    })
+
+
+
+
+
+
+
+
+
+
 
 
 import { getPopular,getIcon,displayTable,displayTable2 } from "./scripts/popular.js";
@@ -206,7 +273,7 @@ function displaySearch_see(video){
     })
 }
 
-var home_page = document.getElementById('youtubeicon')
+var home_page = document.getElementById('youtubeicon_img')
 home_page.addEventListener('click',()=>{
     window.location.href = 'index.html';
 })

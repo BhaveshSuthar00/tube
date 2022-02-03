@@ -1,13 +1,21 @@
-
-#left_side>p>a>img {
-    width: 20px;
-}
 #left_side {
-    flex: 1;
     font-size: 22px;
-    border-right: 1px solid rgb(134, 134, 134);
+    background-color: white;
+    width: 30%;
+    left: -100%;
+    top: 59px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    transition: 0.1s linear;
 }
 #left_side>p>a {
     color: black;
+    display: flex;
     text-decoration: none;
+}
+#left_side>p {
+    margin-left: 5%;
+}
+#left_side>p>a>span {
+    margin-right: 5%;
 }

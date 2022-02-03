@@ -3,8 +3,11 @@
     display: flex;
     /* height: 600px; */
 }
+#main>#left_side {
+    width: 15%;
+}
 #video_details {
-    flex:  4;
+    width: 60%;
 }
 #video_details>.iframe_div>iframe {
     margin-left: 2%;
