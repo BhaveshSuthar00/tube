@@ -38,12 +38,13 @@
 
 .icon_div {
     display: flex;
-    width: 60%;
+    width: 65%;
     height: 100%;
     justify-content: space-between;
 }
-.icon_div>div {
+.right_div_icon_text {
     display: flex;
+
 }
 .icon_img_div {
     width: 25px;
@@ -51,25 +52,14 @@
     margin-top: 16%;
     margin-right: 2%;
 }
-.icon_img_div > img {
-    width: 80%;
-    height: 80%;
-}
 .icon_img5_div {
     height: 30px;
     margin-top: 10%;
     margin-right: 1%;
 }
-.icon_img5_div>img {
-    height: 20px;
-}
 .icon_img6_div {
     height: 22px;
     margin-top: 43%;
-}
-.icon_img6_div>img {
-    height: 15px;
-    margin-top: 2%;
 }
 .icon_text_div {
     height: 100%;
@@ -78,11 +68,12 @@
 .icon_div>p {
     height: 30px;
     margin: 0%;
-    margin-top: 2%;
+    /* margin-top: 2%; */
     justify-content: space-between;
     /* margin-left: 1%; */
     background-color: yellow;
 }
+/* recommendtaion css start from  here  */
 #recommendation {
     margin-left: 2%;
     display: block;
