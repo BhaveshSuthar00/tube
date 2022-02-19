@@ -1,0 +1,18 @@
+#thumb_up_on {
+    display : none;
+}
+#thumb_up_off {
+    display : block;
+}
+#dislike_on {
+    display : none;
+}
+#dislike_off {
+    display : block;
+}
+#searchimport {
+    top : 0;
+    padding-top : 5px;
+    background-color : white;
+    position: sticky;
+}

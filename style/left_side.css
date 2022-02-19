@@ -1,19 +1,21 @@
 #left_side {
     font-size: 22px;
     background-color: white;
-    width: 30%;
+    width: 16%;
     left: -100%;
     top: 59px;
     overflow-y: scroll;
     overflow-x: hidden;
     transition: 0.1s linear;
 }
+
 #left_side>p>a {
     color: black;
     display: flex;
     text-decoration: none;
 }
 #left_side>p {
+    padding-right: 16%;
     margin-left: 5%;
 }
 #left_side>p>a>span {

@@ -16,7 +16,8 @@ function search_bar(){
         <span class="material-icons-outlined">video_call</span>
         <span class="material-icons-outlined">apps</span>
         <span class="material-icons-outlined">notifications</span>
-        <span class="material-icons-outlined">account_circle</span>
+        <span id="user_menu" class="material-icons-outlined">account_circle</span>
+
         </div>
         </div>
     `

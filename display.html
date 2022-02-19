@@ -14,45 +14,32 @@
     rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
     rel="stylesheet">
-    
+    <link rel="stylesheet" href="./style/icon_span.css">
+    <link rel="stylesheet" href="./style/profile_div.css">
+    <link rel="stylesheet" href="./style/material_icon.css">
     <style>
-      .material-icons {
-          /* font-family: 'Material Icons'; */
-          font-family: "Material Icons";
-          font-weight: normal;
-          font-style: normal;
-          font-size: 24px; 
-          display: flex;
-          line-height: 1;
-          text-transform: none;
-          letter-spacing: normal;
-          word-wrap: normal;
-          white-space: nowrap;
-          direction: ltr;
-          -webkit-font-smoothing: antialiased;
-          text-rendering: optimizeLegibility;
-          -moz-osx-font-smoothing: grayscale;
-          font-feature-settings: 'liga';
-      }
-      
-      .material-icons {
-          height: fit-content;
-          width: fit-content;
-      }
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+    body {
+        font-family: 'Roboto', sans-serif;
+    }
+    /* html, body {
+        margin: 0; 
+        height: 100%;
+        overflow: hidden;
+    } */
     </style>
 </head>
 <body>
+    <div class="relative_Div">
+
+    </div>
     <div id="searchimport">
     </div>
     <div id="main">
-        <div id="left_side">
-
-        </div>
+        <div id="left_side"></div>
         <div id="video_details">
             <div class="iframe_div"></div>
-
             <p class="title_text"></p>
-
             <div class="discrip">
                 <div class="data_div">
                     <p></p>
@@ -60,27 +47,27 @@
                 </div>
 
                 <div class="icon_div">
-                    <div class="right_div_icon_text">
+                    <div id="thumb_up_div" class="right_div_icon_text">
                         <div class="icon_img_div">
-                                <span class="material-icons-outlined">
+                                <span id="thumb_up_off" class="material-icons-outlined">
                                     thumb_up
                                 </span>
-                                <!-- <span class="material-icons">
+                                <span id="thumb_up_on" class="material-icons">
                                     thumb_up
-                                 </span> -->
+                                </span>
                         </div>
                         <div class="icon_text_div">
                             <p>LIKE</p>
                         </div>
                     </div>
-                    <div class="right_div_icon_text">
+                    <div id="thumb_down_div" class="right_div_icon_text">
                         <div class="icon_img_div">
-                            <span class="material-icons-outlined">
+                            <span id="dislike_off" class="material-icons-outlined">
                                 thumb_down
                             </span>
-                            <!-- <span class="material-icons">
+                            <span id="dislike_on" class="material-icons">
                                 thumb_down
-                            </span> -->
+                            </span>
                         </div>
                         <div class="icon_text_div">
                             <p>DISLIKE</p>
@@ -88,12 +75,9 @@
                     </div>
                     <div class="right_div_icon_text">
                         <div class="icon_img_div">
-                            <span class="material-icons-outlined">
+                            <span id="share_off" class="material-icons-outlined">
                                 share
                             </span>
-                            <!-- <span class="material-icons">
-                                share
-                            </span> -->
                         </div>
                         <div class="icon_text_div">
                             <p>SHARE</p>
@@ -101,12 +85,9 @@
                     </div>
                     <div class="right_div_icon_text">
                         <div class="icon_img_div">
-                            <span class="material-icons-outlined">
+                            <span id="save_alt_off" class="material-icons-outlined">
                                 save_alt
                             </span>
-                            <!-- <span class="material-icons">
-                                save_alt
-                            </span> -->
                         </div>
                         <div class="icon_text_div">
                             <p>SAVE</p>
@@ -114,12 +95,9 @@
                     </div>
                     <div class="right_div_icon_text">
                         <div class="icon_img5_div">
-                            <span class="material-icons-outlined">
+                            <span id="discription_off" class="material-icons-outlined">
                                 error_outline
                             </span>
-                            <!-- <span class="material-icons">
-                                error_outline
-                            </span> -->
                             </div>
                         <div class="icon_text_div">
                             <p>DESCRIPTION</p>
@@ -135,57 +113,107 @@
                 </div>
             </div>
         </div>
-
-
-        <div id="recommendation">
-            
-
-            
+        <div id="extra_profile_parent">
+            <div id="extra_profile"></div>
         </div>
+        <div id="recommendation"></div>
     </div>
 </body>
 </html>
 <script type="module">
+    let thumb_up = document.getElementById('thumb_up_div');
+    let like_outlined = document.getElementById('thumb_up_off');
+    let like_outline_color = document.getElementById('thumb_up_on');
+    let dislike_outline_color = document.getElementById('dislike_on');
+    let dislike_outlined = document.getElementById('dislike_off');
+
+    thumb_up.addEventListener('click', () =>{
+        if(like_outlined.style.display === 'block'){
+            dislike_outlined.style.display = 'block';
+            dislike_outline_color.style.display = 'none'
+
+            like_outlined.style.display = 'none';
+            like_outline_color.style.display = 'block'
+        }
+        else {
+            like_outline_color.style.display = 'none';
+            like_outlined.style.display = 'block';
+        }
+    })
+    
+    let thumb_down = document.getElementById('thumb_down_div');
+
+    thumb_down.addEventListener('click', () =>{
+    
+        if(dislike_outlined.style.display === 'block'){
+            like_outline_color.style.display = 'none';
+            like_outlined.style.display = 'block';
+
+            dislike_outlined.style.display = 'none';
+            dislike_outline_color.style.display = 'block'
+        } else {
+            dislike_outline_color.style.display = 'none';
+            dislike_outlined.style.display = 'block';
+        }
+    })
+
+    
+    import profile_Div from "./components/profile_div.js";
+
+    let profile_div = document.getElementById('extra_profile');
+
+    profile_div.innerHTML = profile_Div();
+
 
     import search_bar from "./components/search_bar.js";
+
     let search_div = document.getElementById('searchimport');
+
     search_div.innerHTML = search_bar();
 
     import {recommended_video,recom} from './scripts/recommended.js';
 
     import left_side from './components/left_side.js';
+
     let container = document.getElementById('left_side');
-    container.innerHTML = left_side();
+
+    container.style.width = '0%';
+
+    container.style.borderRight = "none"
+
     let a = 0;
     let idd = document.getElementById('menuicon');
+    let main_div = document.getElementById('main');
     idd.addEventListener('click',()=>{
-
-       if(a%2==0){
-           container.innerHTML = null;
-        //    container.style.height = '0vh';
-           container.style.width = '0%';
-    // border-right: 1px solid rgb(134, 134, 134);
-    a++;
-}
-else {
-    container.style.width = '16%';
-    //    container.style.height = '100vh';
-    container.style.borderRight = "1px solid rgb(134, 134, 134)"
-           container.style.left = '0%'; 
-           container.innerHTML = left_side();
+        if(a%2==0){
+            container.innerHTML = null;
+            container.style.width = '0%';
+            container.style.borderRight = "none"
+            a++;
+        }
+        else {
+            container.style.width = '16%';
+            container.style.borderRight = "1px solid rgb(134, 134, 134)"
+            container.style.left = '0%'; 
+            container.innerHTML = left_side();
             a++;
         }
     })
 
+    let user_menu_icon = document.getElementById('user_menu');
 
+    let user_div_menu = document.getElementById('extra_profile');
 
-
-
-
-
-
-
-
+    user_menu_icon.addEventListener('click',()=>{
+        if(user_div_menu.style.display == 'block'){
+            user_div_menu.style.display = 'none';
+            console.log('here')
+        }
+        else {
+            console.log('here2')
+            user_div_menu.style.display = 'block';
+        }
+    })
 
 
 import { getPopular,getIcon,displayTable,displayTable2 } from "./scripts/popular.js";
@@ -225,8 +253,6 @@ import { getPopular,getIcon,displayTable,displayTable2 } from "./scripts/popular
         }
     }
     datashow()
-
-
     function recommendIcon(video){
         // recommendation.innerHTML = null;
     video.forEach(({snippet,id:{videoId}})=>{
@@ -250,11 +276,7 @@ import { getPopular,getIcon,displayTable,displayTable2 } from "./scripts/popular
     })
 }
 
-
-
-
-
-// search result area
+// // search result area
 
 let search_input = document.getElementById('video_btn');
 search_input.addEventListener('click',()=>{
@@ -299,12 +321,12 @@ function displaySearch_see(video){
                     console.log('error in html',error)
                 }
             }
-           data2();
+            data2();
     })
 }
 
-var home_page = document.getElementById('youtubeicon_img')
-home_page.addEventListener('click',()=>{
+    var home_page = document.getElementById('youtubeicon_img')
+    home_page.addEventListener('click',()=>{
     window.location.href = 'index.html';
 })
 </script>

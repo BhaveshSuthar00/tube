@@ -94,7 +94,7 @@
 }
 .main_title_line {
     font-size: 25px;
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    /* font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
 }
 .title_div_search>p {
     margin: 0%;

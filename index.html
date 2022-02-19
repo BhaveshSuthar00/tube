@@ -4,46 +4,46 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./style/search_bar.css">
-    <link rel="stylesheet" href="./style/left_side.css">
+    <title>Youtube</title>
     <link rel="stylesheet" href="./style/index.css">
+    <link rel="stylesheet" href="./style/profile_div.css">
+    <link rel="stylesheet" href="./style/search_bar.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
-      rel="stylesheet">
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
-      <style>
+    rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
+    <!-- <style>
         .material-icons {
-            /* font-family: 'Material Icons'; */
-            font-family: "Material Icons";
-            font-weight: normal;
-            font-style: normal;
-            font-size: 24px; 
-            display: flex;
-            line-height: 1;
-            text-transform: none;
-            letter-spacing: normal;
-            word-wrap: normal;
-            white-space: nowrap;
-            direction: ltr;
-            -webkit-font-smoothing: antialiased;
-            text-rendering: optimizeLegibility;
-            -moz-osx-font-smoothing: grayscale;
-            font-feature-settings: 'liga';
-        }
-        
-        .material-icons {
-            height: fit-content;
-            width: fit-content;
-        }
-      </style>
+        /* font-family: 'Material Icons'; */
+        font-family: "Material Icons";
+        font-weight: normal;
+        font-style: normal;
+        font-size: 24px; 
+        display: flex;
+        line-height: 1;
+        text-transform: none;
+        letter-spacing: normal;
+        word-wrap: normal;
+        white-space: nowrap;
+        direction: ltr;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+        -moz-osx-font-smoothing: grayscale;
+        font-feature-settings: 'liga';
+    }
+    .material-icons {
+        height: fit-content;
+        width: fit-content;
+    }
+    
+    </style> -->
+<link rel="stylesheet" href="./style/left_side.css">
 </head>
 <body>
     <div id="searchimport">
     </div>
     <div class="container">
         <div id="left_side"></div>
-
         <div id="search_results">
             <div id="search_results_div1">
                 <p>mix</p>
@@ -62,26 +62,19 @@
                 <p>Motivation</p>
                 <p>Recently</p>
             </div>
-            <div id="search_results_div2">
-
+            <div id="extra_profile_parent">
+                <div id="extra_profile"></div>
             </div>
+            <div id="search_results_div2"></div>
         </div>
     </div>
 
 </body>
 </html>
-<!-- <script type="module">
-import search_bar from "./components/search_bar.js";
-    let search_div = document.getElementById('searchimport');
-    search_div.innerHTML = search_bar();
-
-    import left_side from './components/left_side.js';
-    let container = document.getElementById('left_side');
-    container.innerHTML = left_side();
-
-    
-</script> -->
 <script type="module">
+import profile_Div from "./components/profile_div.js";
+    let profile_div = document.getElementById('extra_profile');
+    profile_div.innerHTML = profile_Div();
 
     import search_bar from "./components/search_bar.js";
     let search_div = document.getElementById('searchimport');
@@ -93,22 +86,34 @@ import search_bar from "./components/search_bar.js";
     let a = 0;
     let idd = document.getElementById('menuicon');
     idd.addEventListener('click',()=>{
-
-       if(a%2==0){
-           container.innerHTML = null;
-        //    container.style.height = '0vh';
-           container.style.width = '0%';
-           a++;
+        if(a%2==0){
+            container.style.width = '0%';
+            container.style.borderRight = "none";
+            container.innerHTML = null;
+            a++;
         }
         else {
-           container.style.width = '16%';
-        //    container.style.height = '100vh';
-           container.style.left = '0%';
-           container.innerHTML = left_side();
+            container.style.width = '16%';
+            container.style.left = '0%'; 
+            container.style.borderRight = "1px solid rgb(134, 134, 134)"
+            container.innerHTML = left_side();
             a++;
         }
     })
-
+    let user_menu_icon = document.getElementById('user_menu');
+    let user_div_menu = document.getElementById('extra_profile');
+    user_menu_icon.addEventListener('click',()=>{
+        if(user_div_menu.style.display == 'block'){
+            user_div_menu.style.display = 'none';
+        }
+        else {
+            user_div_menu.style.display = 'block';
+        }
+    })
+    
+</script>
+<script type="module">
+    
     import { getPopular,getIcon,displayTable,displayTable2 } from "./scripts/popular.js";
 
     let locationdd = document.getElementById('search_results_div2');
